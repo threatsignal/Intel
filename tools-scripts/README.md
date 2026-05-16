@@ -43,18 +43,90 @@ python3 ioc_extractor.py -t "evil.com contacted 1.2.3.4" --types ipv4 domain
 
 ---
 
+---
+
+### `cve_enricher.py` — CVE Triage with CVSS + EPSS + CISA KEV
+
+Enriches a list of CVE IDs with data from three authoritative sources simultaneously:
+- **NVD (NIST)** — CVSS v3.1 score, severity, vector string, affected CPEs, description
+- **EPSS (FIRST)** — Exploit Prediction Scoring System score + percentile
+- **CISA KEV** — Whether the CVE is in the Known Exploited Vulnerabilities catalog
+
+```bash
+pip install requests
+
+# Single CVE
+python3 cve_enricher.py CVE-2025-0282
+
+# Triage a patch list from file
+python3 cve_enricher.py -f cves.txt --csv report.csv
+
+# Only show critical / KEV-listed CVEs
+python3 cve_enricher.py -f cves.txt --min-cvss 9.0 --kev-only
+```
+
+**Output:**
+```
+────────────────────────────────────────────────────────────────
+  CVE-2025-0282  [CRITICAL 9.0]  ⚠ IN CISA KEV
+────────────────────────────────────────────────────────────────
+  Published : 2025-01-08  |  Modified: 2025-01-15
+  CVSS      : 9.0 (3.1)  CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+  EPSS      : 0.9412  94.1th percentile
+  Summary   : Stack-based buffer overflow in Ivanti Connect Secure...
+```
+
+---
+
+### `subdomain_monitor.py` — Subdomain Discovery & Change Detection
+
+Discovers subdomains via **certificate transparency logs** (crt.sh) and **passive DNS** (HackerTarget), resolves each with live DNS, and optionally HTTP-probes alive hosts. Includes a **baseline/monitor mode** to alert on newly appearing subdomains.
+
+```bash
+pip install requests dnspython
+
+# Basic discovery
+python3 subdomain_monitor.py example.com
+
+# Full scan: discovery + DNS + HTTP probe + save results
+python3 subdomain_monitor.py example.com --probe --csv results.csv
+
+# Save a baseline today...
+python3 subdomain_monitor.py example.com --save-baseline baseline.txt
+
+# ...then alert on new subdomains tomorrow (great for cron jobs)
+python3 subdomain_monitor.py example.com --baseline baseline.txt --alert-new
+```
+
+**Output:**
+```
+════════════════════════════════════════════════════════════════════════════════
+  ThreatSignal Subdomain Monitor  —  example.com
+  2026-05-16 10:00:00  |  47 subdomains to resolve
+════════════════════════════════════════════════════════════════════════════════
+  SUBDOMAIN                                          STATUS    IP / CNAME
+  ──────────────────────────────────────────────────────────────────────────
+  api.example.com                                    HTTPS     93.184.216.34
+  staging.example.com                                NEW HTTP  93.184.216.99
+  legacy.example.com                                 DNS-ONLY  93.184.216.11
+```
+
+---
+
 ## Planned Scripts
 
 - [ ] `sigma_rule_validator.py` — Validate Sigma rules against schema
-- [ ] `cve_enricher.py` — Pull CVSS, EPSS, KEV status for a CVE list
-- [ ] `subdomain_monitor.py` — Monitor a domain for new subdomains (cert transparency)
 - [ ] `phish_checker.py` — Check URLs against PhishTank + OpenPhish + URLScan
 
 ---
 
 ## Requirements
 
-Scripts use Python stdlib unless a `requirements.txt` is present in the script's folder. Check individual script headers for dependencies.
+| Script | Dependencies |
+|--------|-------------|
+| `ioc_extractor.py` | None (stdlib only) |
+| `cve_enricher.py` | `pip install requests` |
+| `subdomain_monitor.py` | `pip install requests dnspython` |
 
 ---
 
