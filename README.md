@@ -1,53 +1,45 @@
-# 🛡️ ThreatSignal — Security Research Repository
+# 📝 Writeups & Research
 
-> Companion repository to [threatsignal.in](https://threatsignal.in) — threat intelligence, security research, IOC feeds, tooling, and defensive resources for the security community.
+**Maintained by:** [ThreatSignal](https://threatsignal.in)
 
----
-
-## 📌 What's In Here
-
-| Folder | Description |
-|--------|-------------|
-| [`/threat-intel-resources`](./threat-intel-resources/) | Curated threat intelligence frameworks, feeds, and references |
-| [`/ioc-feeds`](./ioc-feeds/) | Community IOC lists (IPs, domains, hashes) — updated regularly |
-| [`/security-checklists`](./security-checklists/) | Hardening & audit checklists for common environments |
-| [`/writeups`](./writeups/) | Detailed technical writeups: CVE analyses, malware breakdowns, incident reviews |
-| [`/tools-scripts`](./tools-scripts/) | OSINT, threat hunting, and detection scripts |
-| [`/cve-advisories`](./cve-advisories/) | High-severity CVE advisories with CVSS, PoC links, and mitigations |
+Detailed technical writeups from our research: malware analysis, campaign breakdowns, incident retrospectives, and technique deep-dives. These are longer-form companions to our blog posts.
 
 ---
 
-## 🔔 Stay Updated
+## Index
 
-- 🌐 Blog: [threatsignal.in](https://threatsignal.in)
-- ⭐ Star this repo to get notified of new IOC drops and research
-- 📡 Watch releases for new advisory bundles
-
----
-
-## 🤝 Contributing
-
-Pull requests welcome. If you want to contribute IOCs, writeups, or scripts:
-
-1. Fork the repository
-2. Create a branch: `git checkout -b feat/your-contribution`
-3. Commit with context: what it is, what it detects/mitigates
-4. Open a PR — we'll review within 48 hours
-
-Please do **not** upload actual malware samples. Links/hashes only.
+| Title | Category | Date |
+|-------|----------|------|
+| *(More coming — follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
 
 ---
 
-## ⚠️ Disclaimer
+## Writeup Format
 
-All content here is for **defensive and educational purposes only**. IOC feeds and advisories are provided as-is. Always validate indicators in your own environment before blocking. ThreatSignal is not responsible for any misuse.
+Each writeup follows this structure:
+
+```
+writeups/
+└── YYYY-MM-topic-name/
+    ├── README.md          ← Main writeup
+    ├── iocs.csv           ← IOCs extracted from this research
+    ├── sigma/             ← Detection rules (if any)
+    │   └── rule.yml
+    └── samples/           ← Hashes only, never binaries
+        └── hashes.txt
+```
 
 ---
 
-## 📜 License
+## Contributing
 
-[MIT](./LICENSE) for scripts and tooling. Research content (writeups, advisories) is CC BY 4.0.
+If you've done original security research and want to publish it here under ThreatSignal:
+
+1. Follow the folder structure above
+2. Include IOCs with confidence ratings
+3. Include at least one detection rule (Sigma preferred)
+4. Open a PR with `[Writeup]` in the title
 
 ---
 
-*Built by the team at [threatsignal.in](https://threatsignal.in) — follow for threat intelligence you can actually act on.*
+*All writeups at [threatsignal.in](https://threatsignal.in)*
