@@ -28,7 +28,3 @@ htmlcov/
 venv/
 .venv/
 env/
-
-# Hidden local copies of tools and ioc-feeds
-.tools/
-.ioc-feeds/
