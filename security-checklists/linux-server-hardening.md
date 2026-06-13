@@ -137,3 +137,5 @@ Apply: `sysctl -p`
 ---
 
 *More checklists at [threatsignal.in](https://threatsignal.in)*
+
+<!-- Hardening guidelines update -->
