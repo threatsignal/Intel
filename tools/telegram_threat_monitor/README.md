@@ -36,9 +36,3 @@ An automated Threat Intelligence pipeline that monitors underground Telegram cha
 * **Severity**: 5 / 5
 * **Extracted IOCs**: 
   * HASHES: `d41d8cd98f00b204e9800998ecf8427e`
-
-## Why this project?
-This project demonstrates skills in:
-* **API Integration**: Telethon, Google Gemini, Discord Webhooks.
-* **Data Engineering**: Real-time stream processing and JSON logging.
-* **Threat Intel Analysis**: Automated IOC extraction and LLM-assisted threat triage.
