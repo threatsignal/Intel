@@ -113,28 +113,6 @@ python3 subdomain_monitor.py example.com --baseline baseline.txt --alert-new
 
 ---
 
-### `fetch_feeds.py` - Threat Intelligence IOC Feed Aggregator
-
-Fetches, cleans, deduplicates, and formats threat intelligence indicators from multiple public OSINT feeds (OpenPhish, URLhaus, Feodo Tracker, Threatview.io, and Tor Project exit nodes). Integrates authenticated MalwareBazaar and ThreatFox querying dynamically if an `abuse.ch` Auth-Key is supplied.
-
-```bash
-# Aggregates feeds and saves top 250 indicators (default) to ../ioc-feeds/
-python3 fetch_feeds.py
-
-# Aggregates feeds with a custom limit and path
-python3 fetch_feeds.py --limit 100 --output-dir ../ioc-feeds/
-
-# Fetch live, high-fidelity MalwareBazaar hashes using your free Auth-Key
-python3 fetch_feeds.py --key YOUR_ABUSE_CH_AUTH_KEY
-```
-
-**Output Files updated in `ioc-feeds/`:**
-*   `malicious-ips.txt` (IPs only, one per line)
-*   `phishing-domains.txt` (Defanged domains, sorted)
-*   `malware-hashes.csv` (hashes, type, malware family, first seen, source)
-*   `c2-infrastructure.csv` (indicator, type, confidence, attribution, etc.)
-
----
 
 ## Planned Scripts
 
@@ -148,7 +126,6 @@ python3 fetch_feeds.py --key YOUR_ABUSE_CH_AUTH_KEY
 | Script | Dependencies |
 |--------|-------------|
 | `ioc_extractor.py` | None (stdlib only) |
-| `fetch_feeds.py` | None (stdlib only) |
 | `cve_enricher.py` | `pip install requests` |
 | `subdomain_monitor.py` | `pip install requests dnspython` |
 
