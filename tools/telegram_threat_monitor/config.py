@@ -22,4 +22,4 @@ class Config:
         if not cls.GEMINI_API_KEY: missing.append("GEMINI_API_KEY")
         
         if missing:
-            raise ValueError(f"Missing required environment variables: {', '.join(missing)}")
+            raise ValueError(f"Missing required environment variables : {', '.join(missing)}")
