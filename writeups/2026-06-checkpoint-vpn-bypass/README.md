@@ -3,8 +3,9 @@
 **Severity:** Critical (CVSS 9.3)
 **Affected Products:** Check Point Remote Access VPN, Mobile Access
 **Protocol Surface:** IKEv1 (UDP/500)
-**First Observed Exploitation:** Early June 2026
+**First Observed Exploitation:** May 7, 2026 – June 11, 2026
 **Status:** Patch Available — R81.10 Take 150, R81.20 Take 80
+**Advisory:** [Check Point SK185033](https://support.checkpoint.com/results/sk/sk185033)
 
 ---
 
@@ -22,13 +23,14 @@
 10. [Sigma Rules](#10-sigma-rules)
 11. [KQL Queries](#11-kql-queries)
 12. [Suricata Signatures](#12-suricata-signatures)
-13. [Conclusion](#13-conclusion)
+13. [References](#13-references)
+14. [Conclusion](#14-conclusion)
 
 ---
 
 ## 1. Executive Summary
 
-In early June 2026, ThreatSignal analysts identified active in-the-wild exploitation of **CVE-2026-50751**, a critical authentication bypass vulnerability (CVSS 9.3) affecting Check Point Remote Access VPN and Mobile Access gateways when the legacy **IKEv1** protocol is enabled.
+Between May 7, 2026, and June 11, 2026, active in-the-wild exploitation was observed targeting **CVE-2026-50751**, a critical authentication bypass vulnerability (CVSS 9.3) affecting Check Point Remote Access VPN and Mobile Access gateways when the legacy **IKEv1** protocol is enabled. This activity aligns with the official vendor advisory, **Check Point SK185033**.
 
 The vulnerability originates from a logic error inside `vpnk` — the Check Point VPN kernel daemon — during **Phase 1 IKEv1 Main Mode** negotiation. By sending a crafted packet sequence that includes a **zero-length Hash payload**, an unauthenticated attacker can cause the authentication function to return `true` prematurely, bypassing both pre-shared key (PSK) and certificate-based validation entirely. Upon a successful bypass, the attacker is assigned an IP address from the gateway's VPN pool and gains authenticated network access as if they were a legitimate remote employee.
 
@@ -345,15 +347,13 @@ AnyDesk and Splashtop installations can be detected via:
 
 ## 7. Threat Intelligence & Attribution Context
 
-At the time of writing, ThreatSignal has not attributed active exploitation to a specific named threat actor. The techniques observed are consistent with the operational patterns of both **financially motivated ransomware precursor actors** and **state-aligned initial access brokers (IABs)**. The two are not mutually exclusive — IABs may be exploiting and then selling VPN access to ransomware operators.
+Exploitation of CVE-2026-50751 during the May–June 2026 timeframe has been confidently attributed to **Qilin ransomware affiliates**.
 
-Key observations that inform this assessment:
+The observed techniques are highly consistent with financially motivated actors conducting ransomware precursor activity:
 
-- **Speed of exploitation:** The attacks began within days of the vulnerability becoming publicly known, consistent with well-resourced actors with established vulnerability weaponization pipelines.
-- **Post-exploitation discipline:** The use of LOLBAS techniques and RMM-based persistence (rather than dropped malware) suggests actors with operational security (OPSEC) awareness, more consistent with sophisticated actors than opportunistic script-based exploitation.
-- **Targeting:** Observed victim organizations span multiple sectors (financial services, healthcare, manufacturing), which is more consistent with broad IAB activity than targeted espionage.
-
-We are continuing to track this activity and will update this writeup as attribution evidence develops.
+- **Rapid Weaponization:** The speed of exploitation demonstrates well-resourced affiliates utilizing established vulnerability weaponization pipelines.
+- **Post-Exploitation Discipline:** The deployment of living-off-the-land (LOLBAS) techniques for internal mapping, combined with unauthorized RMM deployments (AnyDesk, Splashtop) for persistence, strongly aligns with known Qilin affiliate playbooks. This avoids dropping custom malware that could trigger early EDR detections.
+- **Targeting:** The targeting of high-value internal assets, such as Domain Controllers via RDP and SMB, points to a clear objective of domain-wide compromise and subsequent ransomware deployment.
 
 ---
 
@@ -361,7 +361,7 @@ We are continuing to track this activity and will update this writeup as attribu
 
 ### 8.1 Apply Vendor Hotfixes (Primary Mitigation)
 
-The only definitive remediation is applying the Check Point-issued hotfixes that address the `vpnk` logic error:
+The only definitive remediation is applying the Check Point-issued hotfixes that address the `vpnk` logic error as detailed in **Check Point Advisory SK185033**:
 
 | Affected Version | Hotfix Take |
 |---|---|
@@ -446,7 +446,13 @@ We have created network-level intrusion detection signatures under the `detectio
 
 ---
 
-## 13. Conclusion
+## 13. References
+
+- **Check Point Advisory:** [SK185033 - Check Point Remote Access VPN Authentication Bypass](https://support.checkpoint.com/results/sk/sk185033)
+
+---
+
+## 14. Conclusion
 
 CVE-2026-50751 is a high-impact, low-complexity vulnerability that reduces the authentication security of Check Point VPN gateways to zero when IKEv1 is enabled. The root cause — a missing guard for a zero-length input in a binary protocol parser — is a reminder that memory-safe languages and rigorous edge-case testing of protocol implementations remain critically important, especially in security-critical network infrastructure.
 
