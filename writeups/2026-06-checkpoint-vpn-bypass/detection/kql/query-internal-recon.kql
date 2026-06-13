@@ -1,0 +1,8 @@
+// Detects execution of common Windows reconnaissance tools (nltest, arp) from a process context associated with VPN session activity.
+// May indicate post-exploitation recon following CVE-2026-50751 exploitation.
+
+DeviceProcessEvents
+| where FileName in~ ("nltest.exe", "arp.exe", "net.exe")
+| where ProcessCommandLine has_any("nltest /dclist", "nltest /domain_trusts", "arp -a", "net view /domain")
+// In a full environment, you would correlate this back to the user context or logon session from the VPN event
+| project TimeGenerated, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessCommandLine

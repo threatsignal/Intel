@@ -1,0 +1,9 @@
+// Detects Check Point VPN authentication attempts using suspicious certificate subjects or usernames associated with CVE-2026-50751 exploitation.
+// Based on observed threat activity using default or generic profiles (e.g. CN=Default, CN=Defautl, CN=usertest).
+
+CommonSecurityLog
+| where DeviceVendor == "Check Point"
+| where DeviceAction in ("Log In", "Sign In", "Key Install") or Message has "certificate"
+| where Message has_any ("CN=Default", "CN=Defautl", "CN=usertest") 
+   or AdditionalExtensions has_any ("CN=Default", "CN=Defautl", "CN=usertest")
+   or SourceUserName in~ ("Default", "Defautl", "usertest")

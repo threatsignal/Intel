@@ -1,0 +1,30 @@
+title: Check Point VPN Successful Login Without MFA (CVE-2026-50751)
+id: a3f1c892-4d7e-4b2a-9e1f-2d8c3a5b7f90
+status: experimental
+description: >
+  Detects successful Check Point Remote Access VPN logins that are not
+  accompanied by a corresponding MFA authentication event. May indicate
+  exploitation of CVE-2026-50751 IKEv1 authentication bypass.
+references:
+  - https://support.checkpoint.com/results/sk/sk185033
+  - https://github.com/threatsignal/Intel/tree/main/writeups/2026-06-checkpoint-vpn-bypass
+author: ThreatSignal Research
+date: 2026/06/10
+logsource:
+  product: checkpoint
+  service: vpn
+detection:
+  selection:
+    action: "Log In"
+    vpn_feature_name: "Remote Access"
+  filter_mfa:
+    mfa_verified: "true"
+  condition: selection and not filter_mfa
+falsepositives:
+  - VPN logins in environments where MFA is intentionally not deployed
+  - Break-glass accounts with MFA exemptions
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1190
+  - cve.2026-50751

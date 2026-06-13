@@ -1,0 +1,4 @@
+# Hashes of unauthorized Linux ELF RAT binaries observed downloaded post-exploitation
+# Association: Qilin Ransomware Affiliate / CVE-2026-50751
+MD5: 52fda5c1b9704544f32ee98d9060e689
+MD5: 51d39aa39478beeac94f2d12f682ecce

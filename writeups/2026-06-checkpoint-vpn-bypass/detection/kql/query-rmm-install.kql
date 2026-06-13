@@ -1,0 +1,11 @@
+// Detects service installation events for known RMM tools (AnyDesk, Splashtop)
+// which have been observed as persistence mechanisms following CVE-2026-50751 exploitation.
+
+DeviceEvents
+| where ActionType == "ServiceInstalled"
+| where AdditionalFields has_any ("AnyDesk", "Splashtop")
+| project TimeGenerated, DeviceName, ActionType, AdditionalFields
+// Alternatively, look at Event ID 7045
+// Event
+// | where EventID == 7045
+// | where EventData has_any ("AnyDesk", "Splashtop")

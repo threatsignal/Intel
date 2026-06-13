@@ -1,0 +1,10 @@
+// Detects unusually fast IKEv1 Phase 1 negotiations on Check Point gateways.
+// Automated exploitation tools bypassing authentication typically complete Phase 1 in under 1 second (1000ms), 
+// whereas legitimate users with certificate validation, client checks, or MFA delays take several seconds.
+
+CommonSecurityLog
+| where DeviceVendor == "Check Point"
+| where AdditionalExtensions has "ike_version=IKEv1" or Message has "IKEv1"
+| extend duration = extract(@"phase1_duration_ms=(\d+)", 1, AdditionalExtensions, typeof(int))
+| where duration < 1000
+| project TimeGenerated, SourceIP, DestinationIP, duration, Message

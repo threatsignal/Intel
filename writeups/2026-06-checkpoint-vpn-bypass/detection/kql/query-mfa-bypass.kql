@@ -1,0 +1,8 @@
+// Detects successful Check Point Remote Access VPN logins that are not accompanied by a corresponding MFA authentication event.
+// May indicate exploitation of CVE-2026-50751 IKEv1 authentication bypass.
+
+CommonSecurityLog
+| where DeviceVendor == "Check Point"
+| where DeviceAction == "Log In"
+| where AdditionalExtensions has "vpn_feature_name=Remote Access"
+| where not(AdditionalExtensions has "mfa_verified=true")
