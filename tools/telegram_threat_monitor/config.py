@@ -4,8 +4,17 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+def _get_int_env(name: str) -> int | None:
+    val = os.getenv(name)
+    if not val:
+        return None
+    try:
+        return int(val)
+    except ValueError:
+        return None
+
 class Config:
-    TELEGRAM_API_ID = os.getenv("TELEGRAM_API_ID")
+    TELEGRAM_API_ID = _get_int_env("TELEGRAM_API_ID")
     TELEGRAM_API_HASH = os.getenv("TELEGRAM_API_HASH")
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
     DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
