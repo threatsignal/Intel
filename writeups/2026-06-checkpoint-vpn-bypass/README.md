@@ -1,10 +1,10 @@
 # CVE-2026-50751: Authentication Bypass in Check Point Remote Access VPN via IKEv1 Logic Flaw
 
-**Severity:** Critical (CVSS 9.3)
-**Affected Products:** Check Point Remote Access VPN, Mobile Access
-**Protocol Surface:** IKEv1 (UDP/500)
-**First Observed Exploitation:** May 7, 2026 – June 11, 2026
-**Status:** Patch Available - R81.10 Take 150, R81.20 Take 80
+**Severity:** Critical (CVSS 9.3)  
+**Affected Products:** Check Point Remote Access VPN, Mobile Access  
+**Protocol Surface:** IKEv1 (UDP/500)  
+**First Observed Exploitation:** May 7, 2026 – June 11, 2026  
+**Status:** Patch Available - R81.10 Take 150, R81.20 Take 80  
 **Advisory:** [Check Point SK185033](https://support.checkpoint.com/results/sk/sk185033)
 
 ---
