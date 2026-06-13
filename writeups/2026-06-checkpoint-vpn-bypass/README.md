@@ -466,6 +466,6 @@ ThreatSignal will continue monitoring exploitation activity associated with CVE-
 
 ---
 
-*This writeup is part of ThreatSignal's technical research series. For questions, engagement requests, or to share threat intelligence, contact our research team via the repository.*
+*This writeup is part of ThreatSignal's technical research series. For questions, engagement requests, or to share threat intelligence, contact our research team via contact@threatsignal.in .*
 
 *Last Updated: June 2026*
