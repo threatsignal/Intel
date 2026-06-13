@@ -1,0 +1,42 @@
+name: Update Threat Intel Feeds
+
+on:
+  schedule:
+    # Run once every day at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-feeds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Feed Aggregator
+        run: |
+          python tools-scripts/fetch_feeds.py --limit 250
+        env:
+          # Optional: The user can add their abuse.ch Auth-Key as a repository secret
+          ABUSE_CH_AUTH_KEY: ${{ secrets.ABUSE_CH_AUTH_KEY }}
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add ioc-feeds/*.txt ioc-feeds/*.csv
+          # Only commit if there are changes
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-update threat intel feeds: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push
+          else
+            echo "No changes in feeds, skipping commit."
+          fi
