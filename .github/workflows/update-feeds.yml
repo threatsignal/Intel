@@ -40,3 +40,5 @@ jobs:
           else
             echo "No changes in feeds, skipping commit."
           fi
+
+# Refine CI schedule trigger
