@@ -14,7 +14,7 @@ These IOC lists are meant to be ingested into your SIEM, firewall, EDR, or threa
 # Download a feed
 wget https://raw.githubusercontent.com/threatsignal/threatsignal/main/ioc-feeds/malicious-ips.txt
 
-# Use with iptables (use with caution — validate first)
+# Use with iptables (use with caution - validate first)
 while read ip; do iptables -A INPUT -s "$ip" -j DROP; done < malicious-ips.txt
 ```
 
@@ -60,7 +60,7 @@ To provide maximum context for threat validation and triage:
 
 ## Attribution & Confidence
 
-Each CSV includes `confidence` (High/Med/Low) and `source` fields. Always validate IOCs before blocking in production — false positives can impact legitimate traffic.
+Each CSV includes `confidence` (High/Med/Low) and `source` fields. Always validate IOCs before blocking in production - false positives can impact legitimate traffic.
 
 ---
 

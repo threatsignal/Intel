@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-subdomain_monitor.py — ThreatSignal Subdomain Discovery & Monitor
+subdomain_monitor.py - ThreatSignal Subdomain Discovery & Monitor
 =================================================================
 Discovers subdomains for a target domain using certificate transparency
 logs (crt.sh) and passive DNS sources, then performs live DNS resolution
@@ -106,7 +106,7 @@ def fetch_hackertarget(domain: str) -> set:
             timeout=TIMEOUT
         )
         if "API count exceeded" in r.text or "error" in r.text.lower()[:30]:
-            print("  [!] HackerTarget rate limit hit — skipping this source", file=sys.stderr)
+            print("  [!] HackerTarget rate limit hit - skipping this source", file=sys.stderr)
             return subdomains
         for line in r.text.splitlines():
             parts = line.split(",")
@@ -122,7 +122,7 @@ def fetch_hackertarget(domain: str) -> set:
 # ─── DNS Resolution ───────────────────────────────────────────────────────────
 
 def resolve_dns(subdomain: str) -> dict:
-    """Resolve a subdomain — A, AAAA, CNAME records."""
+    """Resolve a subdomain - A, AAAA, CNAME records."""
     result = {
         "subdomain": subdomain,
         "resolved": False,
@@ -271,7 +271,7 @@ def print_result(r: dict, do_probe: bool, new_set: set, quiet: bool):
 
 def print_header(domain: str, total: int, do_probe: bool):
     print(f"\n{'='*80}")
-    print(f"  {BOLD}ThreatSignal Subdomain Monitor{RESET}  —  {domain}")
+    print(f"  {BOLD}ThreatSignal Subdomain Monitor{RESET}  -  {domain}")
     print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  |  {total} subdomains to resolve")
     if do_probe:
         print(f"  HTTP probing: enabled")
@@ -360,7 +360,7 @@ def main():
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     parser = argparse.ArgumentParser(
-        description="ThreatSignal Subdomain Monitor — cert transparency + DNS + HTTP probing"
+        description="ThreatSignal Subdomain Monitor - cert transparency + DNS + HTTP probing"
     )
     parser.add_argument("domain", help="Target domain (e.g. example.com)")
     parser.add_argument("--probe", action="store_true",

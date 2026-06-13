@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-cve_enricher.py — ThreatSignal CVE Enrichment Utility
+cve_enricher.py - ThreatSignal CVE Enrichment Utility
 ======================================================
 Enriches a list of CVE IDs with data from three authoritative sources:
 
-  1. NVD (NIST)  — CVSS v3.1 score, vector, severity, description, affected CPEs
-  2. EPSS (FIRST) — Exploit Prediction Scoring System score + percentile
-  3. CISA KEV    — Whether the CVE is in CISA's Known Exploited Vulnerabilities catalog
+  1. NVD (NIST)  - CVSS v3.1 score, vector, severity, description, affected CPEs
+  2. EPSS (FIRST) - Exploit Prediction Scoring System score + percentile
+  3. CISA KEV    - Whether the CVE is in CISA's Known Exploited Vulnerabilities catalog
 
 Use this to quickly triage a patch list, prioritise a vuln backlog, or enrich
 IOC reports with context about the CVEs referenced.
@@ -159,7 +159,7 @@ def parse_nvd(cve_data: dict) -> dict:
     out["published"] = cve_data.get("published", "N/A")[:10]
     out["modified"]  = cve_data.get("lastModified", "N/A")[:10]
 
-    # CVSS — prefer v3.1, fall back to v3.0, then v2
+    # CVSS - prefer v3.1, fall back to v3.0, then v2
     metrics = cve_data.get("metrics", {})
     for version_key in ("cvssMetricV31", "cvssMetricV30", "cvssMetricV2"):
         entries = metrics.get(version_key, [])
@@ -232,7 +232,7 @@ def print_summary(results: dict):
     no_data = sum(1 for r in results.values() if r["nvd"]["cvss_score"] is None)
 
     print(f"\n{'='*64}")
-    print(f"  SUMMARY — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  SUMMARY - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'='*64}")
     print(f"  Total CVEs   : {total}")
     print(f"  Critical     : {crits}")
@@ -299,7 +299,7 @@ def load_cves_from_file(path: str) -> list:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="ThreatSignal CVE Enricher — CVSS + EPSS + CISA KEV in one shot"
+        description="ThreatSignal CVE Enricher - CVSS + EPSS + CISA KEV in one shot"
     )
     parser.add_argument("cves", nargs="*", help="CVE IDs (e.g. CVE-2024-1234)")
     parser.add_argument("-f", "--file", help="File with one CVE ID per line")
@@ -335,7 +335,7 @@ def main():
     epss_data = fetch_epss_bulk(cve_ids)
     print(f"{len(epss_data)} scores returned")
 
-    # Step 3: NVD (one by one — rate limited)
+    # Step 3: NVD (one by one - rate limited)
     print("[*] Fetching NVD data (rate-limited)...")
     results = {}
     for i, cve_id in enumerate(cve_ids, 1):

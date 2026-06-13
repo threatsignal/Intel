@@ -68,4 +68,4 @@ A curated reference list maintained by [ThreatSignal](https://threatsignal.in). 
 
 ---
 
-*Maintained by [threatsignal.in](https://threatsignal.in) — suggestions welcome via PR.*
+*Maintained by [threatsignal.in](https://threatsignal.in) - suggestions welcome via PR.*

@@ -1,4 +1,4 @@
-title: Unauthorized RMM Tool Installation — AnyDesk or Splashtop
+title: Unauthorized RMM Tool Installation - AnyDesk or Splashtop
 id: c9e3f562-1a4d-4b2e-c103-0f5g7d9b2e3f
 status: experimental
 description: >
@@ -14,7 +14,7 @@ date: 2026/06/10
 logsource:
   product: windows
   service: system
-  definition: 'Event ID 7045 — new service installed'
+  definition: 'Event ID 7045 - new service installed'
 detection:
   selection:
     EventID: 7045

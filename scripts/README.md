@@ -3,18 +3,18 @@
 **Maintained by:** [ThreatSignal](https://threatsignal.in)  
 **Language:** Python 3.8+ (unless noted)
 
-Scripts we actually use in our research workflow — open-sourced for the community.
+Scripts we actually use in our research workflow - open-sourced for the community.
 
 ---
 
 ## Scripts
 
-### `ioc_extractor.py` — IOC Extraction from Unstructured Text
+### `ioc_extractor.py` - IOC Extraction from Unstructured Text
 
 Extracts IPv4, IPv6, domains, URLs, hashes (MD5/SHA1/SHA256), CVE IDs, and emails from any text input. Filters private IPs and common false-positive domains.
 
 ```bash
-# Install (no external deps — stdlib only)
+# Install (no external deps - stdlib only)
 python3 ioc_extractor.py --help
 
 # Extract from a threat report PDF (convert to text first)
@@ -30,7 +30,7 @@ python3 ioc_extractor.py -t "evil.com contacted 1.2.3.4" --types ipv4 domain
 **Output:**
 ```
 ============================================================
-  ThreatSignal IOC Extractor — 2026-05-16 10:00:00
+  ThreatSignal IOC Extractor - 2026-05-16 10:00:00
   Found 3 indicators across 2 types
 ============================================================
 
@@ -45,12 +45,12 @@ python3 ioc_extractor.py -t "evil.com contacted 1.2.3.4" --types ipv4 domain
 
 ---
 
-### `cve_enricher.py` — CVE Triage with CVSS + EPSS + CISA KEV
+### `cve_enricher.py` - CVE Triage with CVSS + EPSS + CISA KEV
 
 Enriches a list of CVE IDs with data from three authoritative sources simultaneously:
-- **NVD (NIST)** — CVSS v3.1 score, severity, vector string, affected CPEs, description
-- **EPSS (FIRST)** — Exploit Prediction Scoring System score + percentile
-- **CISA KEV** — Whether the CVE is in the Known Exploited Vulnerabilities catalog
+- **NVD (NIST)** - CVSS v3.1 score, severity, vector string, affected CPEs, description
+- **EPSS (FIRST)** - Exploit Prediction Scoring System score + percentile
+- **CISA KEV** - Whether the CVE is in the Known Exploited Vulnerabilities catalog
 
 ```bash
 pip install requests
@@ -78,7 +78,7 @@ python3 cve_enricher.py -f cves.txt --min-cvss 9.0 --kev-only
 
 ---
 
-### `subdomain_monitor.py` — Subdomain Discovery & Change Detection
+### `subdomain_monitor.py` - Subdomain Discovery & Change Detection
 
 Discovers subdomains via **certificate transparency logs** (crt.sh) and **passive DNS** (HackerTarget), resolves each with live DNS, and optionally HTTP-probes alive hosts. Includes a **baseline/monitor mode** to alert on newly appearing subdomains.
 
@@ -101,7 +101,7 @@ python3 subdomain_monitor.py example.com --baseline baseline.txt --alert-new
 **Output:**
 ```
 ════════════════════════════════════════════════════════════════════════════════
-  ThreatSignal Subdomain Monitor  —  example.com
+  ThreatSignal Subdomain Monitor  -  example.com
   2026-05-16 10:00:00  |  47 subdomains to resolve
 ════════════════════════════════════════════════════════════════════════════════
   SUBDOMAIN                                          STATUS    IP / CNAME
@@ -113,7 +113,7 @@ python3 subdomain_monitor.py example.com --baseline baseline.txt --alert-new
 
 ---
 
-### `fetch_feeds.py` — Threat Intelligence IOC Feed Aggregator
+### `fetch_feeds.py` - Threat Intelligence IOC Feed Aggregator
 
 Fetches, cleans, deduplicates, and formats threat intelligence indicators from multiple public OSINT feeds (OpenPhish, URLhaus, Feodo Tracker, Threatview.io, and Tor Project exit nodes). Integrates authenticated MalwareBazaar and ThreatFox querying dynamically if an `abuse.ch` Auth-Key is supplied.
 
@@ -138,8 +138,8 @@ python3 fetch_feeds.py --key YOUR_ABUSE_CH_AUTH_KEY
 
 ## Planned Scripts
 
-- [ ] `sigma_rule_validator.py` — Validate Sigma rules against schema
-- [ ] `phish_checker.py` — Check URLs against PhishTank + OpenPhish + URLScan
+- [ ] `sigma_rule_validator.py` - Validate Sigma rules against schema
+- [ ] `phish_checker.py` - Check URLs against PhishTank + OpenPhish + URLScan
 
 ---
 

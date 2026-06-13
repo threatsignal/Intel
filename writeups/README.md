@@ -11,7 +11,7 @@ Detailed technical writeups from our research: malware analysis, campaign breakd
 | Title | Category | Date |
 |-------|----------|------|
 | [Deep Dive: Exploitation of CVE-2026-50751 (Check Point VPN Auth Bypass)](2026-06-checkpoint-vpn-bypass/README.md) | Vulnerability Research | 2026-06-13 |
-| *(More coming — follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
+| *(More coming - follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
 
 ---
 

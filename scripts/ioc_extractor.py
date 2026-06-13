@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ioc_extractor.py — ThreatSignal IOC Extraction Utility
+ioc_extractor.py - ThreatSignal IOC Extraction Utility
 =======================================================
 Extracts Indicators of Compromise (IOCs) from unstructured text:
 reports, emails, paste dumps, log snippets, etc.
@@ -117,7 +117,7 @@ def extract_iocs(text: str, exclude_private: bool = True) -> dict:
 def print_results(results: dict, do_defang: bool = False):
     total = sum(len(v) for v in results.values())
     print(f"\n{'='*60}")
-    print(f"  ThreatSignal IOC Extractor — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  ThreatSignal IOC Extractor - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Found {total} indicators across {len(results)} types")
     print(f"{'='*60}\n")
 
@@ -161,7 +161,7 @@ def save_json(results: dict, filepath: str, do_defang: bool = False):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="ThreatSignal IOC Extractor — extract indicators from text"
+        description="ThreatSignal IOC Extractor - extract indicators from text"
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-f", "--file", help="Input file path")

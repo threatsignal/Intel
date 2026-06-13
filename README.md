@@ -10,7 +10,7 @@ Detailed technical writeups from our research: malware analysis, campaign breakd
 
 | Title | Category | Date |
 |-------|----------|------|
-| *(More coming — follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
+| *(More coming - follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
 
 ---
 

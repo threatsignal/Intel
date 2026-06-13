@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Feed Aggregator
         run: |
-          python tools-scripts/fetch_feeds.py --limit 250
+          python scripts/fetch_feeds.py --limit 250
         env:
           # Optional: The user can add their abuse.ch Auth-Key as a repository secret
           ABUSE_CH_AUTH_KEY: ${{ secrets.ABUSE_CH_AUTH_KEY }}

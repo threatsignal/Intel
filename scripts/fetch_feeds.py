@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-fetch_feeds.py — ThreatSignal IOC Feed Aggregator (with Autopilot & Attribution)
+fetch_feeds.py - ThreatSignal IOC Feed Aggregator (with Autopilot & Attribution)
 ================================================================================
 Aggregates indicators from various public threat intelligence feeds:
 - Feodo Tracker (Botnet C2 IPs)
@@ -450,7 +450,7 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("  ThreatSignal IOC Feed Aggregator — Running Updates")
+    print("  ThreatSignal IOC Feed Aggregator - Running Updates")
     print(f"  Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  Output Dir: {output_dir}")
     print(f"  Limit per file: {args.limit if args.limit > 0 else 'Unlimited'}")

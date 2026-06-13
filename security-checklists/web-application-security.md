@@ -41,7 +41,7 @@
 - [ ] Test for IDOR (Insecure Direct Object References)
 - [ ] Protect admin interfaces from public access (IP restriction, VPN)
 - [ ] Audit all API endpoints for missing auth checks
-- [ ] Implement RBAC or ABAC consistently — not ad hoc
+- [ ] Implement RBAC or ABAC consistently - not ad hoc
 
 ---
 
@@ -83,7 +83,7 @@ Test with: [securityheaders.com](https://securityheaders.com)
 - [ ] Return minimal data in API responses (avoid over-fetching)
 - [ ] Version your API; deprecate old versions
 - [ ] Log and monitor API calls for anomalies
-- [ ] Implement CORS properly — don't use `*` in production
+- [ ] Implement CORS properly - don't use `*` in production
 
 ---
 
