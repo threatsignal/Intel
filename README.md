@@ -9,10 +9,9 @@
 | Folder | Description |
 |--------|-------------|
 | [`/threat-intel-resources`](./threat-intel-resources/) | Curated threat intelligence frameworks, feeds, and references |
-| [`/ioc-feeds`](./ioc-feeds/) | Community IOC lists (IPs, domains, hashes) — updated regularly |
 | [`/security-checklists`](./security-checklists/) | Hardening & audit checklists for common environments |
 | [`/writeups`](./writeups/) | Detailed technical writeups: CVE analyses, malware breakdowns, incident reviews |
-| [`/tools-scripts`](./tools-scripts/) | OSINT, threat hunting, and detection scripts |
+| [`/scripts`](./scripts/) | Python scripts for feed fetching, CVE enrichment, subdomain monitoring, and IOC extraction |
 | [`/cve-advisories`](./cve-advisories/) | High-severity CVE advisories with CVSS, PoC links, and mitigations |
 
 ---
