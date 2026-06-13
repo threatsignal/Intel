@@ -1,4 +1,4 @@
-# 🕵️ Dark Web & Telegram Threat Monitor
+# 🕵️ Telegram Threat Monitor
 
 An automated Threat Intelligence pipeline that monitors underground Telegram channels, extracts Indicators of Compromise (IOCs), and uses GenAI (Gemini) to translate foreign languages and summarize threats. High-severity alerts are pushed in real-time to Discord.
 
