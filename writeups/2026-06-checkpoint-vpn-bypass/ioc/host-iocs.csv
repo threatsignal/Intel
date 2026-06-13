@@ -1,6 +1,6 @@
-indicator,type,confidence,threat_actor,malware_family,first_seen,last_seen,source,notes
-AnyDesk.exe,file_name,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal,Unauthorized AnyDesk installation in %APPDATA%\AnyDesk\
-Splashtop Streamer.exe,file_name,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal,Unauthorized Splashtop installation in %ProgramFiles%\Splashtop\
-AnyDesk,service_name,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal,Service with auto-start; Persistence mechanism
-nltest.exe /dclist,command_line,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal,Process tree from VPN-spawned processes; Post-exploitation recon
-arp -a,command_line,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal,Executed within 5 min of VPN session establishment; Post-exploitation recon
+indicator,type,notes,confidence,threat_actor,malware_family,first_seen,last_seen,source
+AnyDesk.exe,file_name,Unauthorized AnyDesk installation in %APPDATA%\AnyDesk\,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal
+Splashtop Streamer.exe,file_name,Unauthorized Splashtop installation in %ProgramFiles%\Splashtop\,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal
+AnyDesk,service_name,Service with auto-start; Persistence mechanism,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal
+nltest.exe /dclist,command_line,Process tree from VPN-spawned processes; Post-exploitation recon,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal
+arp -a,command_line,Executed within 5 min of VPN session establishment; Post-exploitation recon,High,Qilin Affiliate,None,2026-06-02,2026-06-12,ThreatSignal
