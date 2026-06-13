@@ -36,7 +36,7 @@ async def main():
             
             # 2. Analyze with LLM
             print("    Analyzing with LLM...")
-            analysis = llm.analyze_message(text)
+            analysis = await llm.analyze_message_async(text)
             
             # Combine data
             alert_data = {
@@ -50,12 +50,12 @@ async def main():
             }
             
             # 3. Log and Alert
-            alert_mgr.log_locally(alert_data)
+            await alert_mgr.log_locally_async(alert_data)
             
             # Only send discord alerts for severity 3 or higher to reduce noise
             if alert_data.get("severity", 0) >= 3:
                 print(f"    Sending HIGH SEVERITY alert to Discord (Severity: {alert_data['severity']})")
-                alert_mgr.send_discord_alert(alert_data)
+                await alert_mgr.send_discord_alert_async(alert_data)
             else:
                 print(f"    Logged locally (Severity: {alert_data.get('severity', 0)})")
                 

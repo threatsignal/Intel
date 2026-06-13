@@ -1,7 +1,8 @@
-import requests
 import json
 import os
-from datetime import datetime
+import aiohttp
+import aiofiles
+from datetime import datetime, timezone
 from config import Config
 
 class AlertManager:
@@ -9,17 +10,17 @@ class AlertManager:
         self.webhook_url = Config.DISCORD_WEBHOOK_URL
         self.log_file = "threat_log.jsonl"
 
-    def log_locally(self, data: dict):
-        """Saves the event to a local JSONL file."""
-        data["timestamp"] = datetime.utcnow().isoformat()
+    async def log_locally_async(self, data: dict):
+        """Saves the event to a local JSONL file asynchronously."""
+        data["timestamp"] = datetime.now(timezone.utc).isoformat()
         try:
-            with open(self.log_file, "a") as f:
-                f.write(json.dumps(data) + "\n")
+            async with aiofiles.open(self.log_file, "a") as f:
+                await f.write(json.dumps(data) + "\n")
         except Exception as e:
             print(f"Error logging locally: {e}")
 
-    def send_discord_alert(self, data: dict):
-        """Sends a formatted embedded message to Discord."""
+    async def send_discord_alert_async(self, data: dict):
+        """Sends a formatted embedded message to Discord asynchronously."""
         if not self.webhook_url:
             return
 
@@ -77,12 +78,13 @@ class AlertManager:
         payload = {"embeds": [embed]}
 
         try:
-            response = requests.post(
-                self.webhook_url,
-                data=json.dumps(payload),
-                headers={"Content-Type": "application/json"}
-            )
-            if response.status_code != 204:
-                print(f"Failed to send Discord alert: {response.text}")
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    self.webhook_url,
+                    json=payload
+                ) as response:
+                    if response.status != 204:
+                        error_text = await response.text()
+                        print(f"Failed to send Discord alert: {error_text}")
         except Exception as e:
             print(f"Error sending Discord alert: {e}")

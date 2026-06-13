@@ -1,3 +1,4 @@
+import json
 import google.generativeai as genai
 from config import Config
 
@@ -6,10 +7,10 @@ class LLMAnalyzer:
         genai.configure(api_key=Config.GEMINI_API_KEY)
         self.model = genai.GenerativeModel('gemini-1.5-pro')
 
-    def analyze_message(self, text: str) -> dict:
+    async def analyze_message_async(self, text: str) -> dict:
         """
         Uses Gemini to translate text (if not English), summarize the threat, 
-        and provide a severity score.
+        and provide a severity score asynchronously.
         """
         prompt = f"""
         You are an expert Threat Intelligence Analyst monitoring underground channels.
@@ -28,8 +29,22 @@ class LLMAnalyzer:
         Respond ONLY with valid JSON.
         """
         
+        default_error_response = {
+            "translation": "Translation failed.",
+            "summary": "Could not generate summary.",
+            "severity": 0,
+            "threat_type": "Unknown"
+        }
+        
         try:
-            response = self.model.generate_content(prompt)
+            response = await self.model.generate_content_async(prompt)
+            
+            # Check for safety blocks
+            if response.candidates and response.candidates[0].finish_reason.name == "SAFETY":
+                print("LLM Analysis blocked by safety filters.")
+                default_error_response["summary"] = "Message blocked by safety filters."
+                return default_error_response
+            
             # Naive JSON extraction (assuming the model returns pure JSON or Markdown wrapped JSON)
             result_text = response.text.strip()
             if result_text.startswith('```json'):
@@ -37,13 +52,7 @@ class LLMAnalyzer:
             elif result_text.startswith('```'):
                 result_text = result_text[3:-3]
                 
-            import json
             return json.loads(result_text)
         except Exception as e:
             print(f"LLM Analysis failed: {e}")
-            return {
-                "translation": "Translation failed.",
-                "summary": "Could not generate summary.",
-                "severity": 0,
-                "threat_type": "Unknown"
-            }
+            return default_error_response

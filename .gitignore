@@ -1,0 +1,30 @@
+# Python compilation caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and secrets
+.env
+
+# Telethon session and database files
+*.session
+*.session-journal
+
+# Local logs and output files
+threat_log.jsonl
+*.log
+
+# Editor & OS settings
+.DS_Store
+.vscode/
+.idea/
+
+# Testing caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Python virtual environments
+venv/
+.venv/
+env/
