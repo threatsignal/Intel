@@ -1,0 +1,10 @@
+Indicator,Type,Description,Association
+azurenetfiles[.]net,Domain,MeshCentral C2 Domain,UNC6240 / ShinyHunters
+wss://azurenetfiles[.]net:443/agent.ashx,URL,MeshCentral C2 WebSocket,UNC6240 / ShinyHunters
+142.11.200[.]186,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+142.11.200[.]187,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+142.11.200[.]188,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+142.11.200[.]189,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+142.11.200[.]190,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+108.174.202[.]99,IP,Attacker Infrastructure,UNC6240 / ShinyHunters
+176.120.22[.]24,IP,ShinyHunters DLS Mirror (SSH),UNC6240 / ShinyHunters

@@ -1,0 +1,15 @@
+# Hashes of unauthorized Linux ELF and Windows PE binaries (MeshCentral agents)
+# Association: UNC6240 / ShinyHunters / CVE-2026-35273
+
+#
+# NOTE: Threat intelligence sources indicate that specific file hashes for the MeshCentral
+# agents deployed in this campaign are ephemeral — the binary is typically the standard
+# MeshCentral agent rebuilt or reconfigured per campaign. No confirmed static hashes have
+# been published by Oracle, Google TAG, eSentire, or Rapid7 at this time.
+#
+# HUNTING GUIDANCE: Rather than relying on static hashes, defenders should use
+# behavioral detection (process lineage from java/WebLogic, outbound WSS connections,
+# file name matching `*azure-ops*`). Refer to the Sigma and KQL rules in detection/
+# for recommended detection logic.
+#
+# This file will be updated if verified hashes are published by authoritative sources.

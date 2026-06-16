@@ -1,0 +1,8 @@
+// Detects unauthenticated POST requests to the vulnerable PSEMHUB endpoint
+AppServiceHTTPLogs
+| where CsUriStem =~ "/PSEMHUB/hub/" or CsUriStem has "/PSIGW/HttpListeningConnector"
+| where CsMethod == "POST"
+| where ScStatus in (200, 500)
+| project TimeGenerated, CIp, CsUriStem, CsMethod, ScStatus, UserAgent
+| summarize Count=count() by CIp, CsUriStem
+| where Count > 5 // Adjust threshold based on environment

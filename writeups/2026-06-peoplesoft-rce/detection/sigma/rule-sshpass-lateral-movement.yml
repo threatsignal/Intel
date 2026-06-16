@@ -1,0 +1,22 @@
+title: SSHPass Credential Spraying Execution
+id: 1b2e1561-46f0-4163-9a3a-96e05391d374
+status: experimental
+description: Detects the use of sshpass, commonly used in custom fanout scripts for lateral movement by UNC6240.
+author: ThreatSignal
+date: 2026/06/16
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '/sshpass'
+        CommandLine|contains: 
+            - '-p '
+            - '-f '
+    condition: selection
+falsepositives:
+    - Administrative automation scripts
+level: medium
+tags:
+    - attack.lateral_movement
+    - attack.t1110.003

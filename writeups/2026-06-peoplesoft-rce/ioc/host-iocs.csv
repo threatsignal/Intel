@@ -1,0 +1,5 @@
+Indicator,Type,Description,Association
+meshagent*-azure-ops.exe,Filename,Disguised MeshCentral Agent,UNC6240 / ShinyHunters
+*_fanout.sh,Filename,Lateral Movement Script,UNC6240 / ShinyHunters
+README-IF-YOU-SEE-THIS-YOUVE-BEEN-HACKED.TXT,Filename,Extortion Note,UNC6240 / ShinyHunters
+*.jsp,Filename,Webshell dropped in PSEMHUB.war,UNC6240 / ShinyHunters

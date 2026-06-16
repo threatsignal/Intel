@@ -1,0 +1,5 @@
+// Detects unexpected child processes spawned from WebLogic (java.exe/java), indicating a webshell execution
+DeviceProcessEvents
+| where InitiatingProcessFileName in~ ("java.exe", "java")
+| where ProcessCommandLine has_any ("cmd.exe", "powershell.exe", "sh", "bash", "meshagent", "wget", "curl")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, ProcessFileName, ProcessCommandLine

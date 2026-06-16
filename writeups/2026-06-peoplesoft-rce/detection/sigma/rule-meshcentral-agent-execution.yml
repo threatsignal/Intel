@@ -1,0 +1,23 @@
+title: Suspicious MeshCentral Agent Execution
+id: c9281561-12f0-4663-8a3a-96e05391d374
+status: experimental
+description: Detects the execution of MeshCentral agents disguised as Azure operations binaries, observed in UNC6240 campaigns.
+author: ThreatSignal
+date: 2026/06/16
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_image:
+        Image|endswith:
+            - '\meshagent.exe'
+            - '\meshagent64.exe'
+    selection_commandline:
+        CommandLine|contains: 'azure-ops'
+    condition: selection_image or selection_commandline
+falsepositives:
+    - Legitimate IT usage of MeshCentral (though renaming to azure-ops is highly suspicious)
+level: high
+tags:
+    - attack.command_and_control
+    - attack.t1219

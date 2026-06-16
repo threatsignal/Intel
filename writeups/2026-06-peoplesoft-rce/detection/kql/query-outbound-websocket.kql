@@ -1,0 +1,4 @@
+// Detects outbound connections to known MeshCentral C2 infrastructure
+DeviceNetworkEvents
+| where RemoteUrl has_any ("azurenetfiles.net", "142.11.200.186", "142.11.200.187", "142.11.200.188", "142.11.200.189", "142.11.200.190", "108.174.202.99")
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteIP, RemoteUrl, RemotePort

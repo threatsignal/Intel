@@ -1,0 +1,1 @@
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ThreatSignal - Suspicious MeshCentral C2 Communication (azurenetfiles.net)"; flow:established,to_server; tls.sni; content:"azurenetfiles.net"; nocase; sid:90035274; rev:1;)

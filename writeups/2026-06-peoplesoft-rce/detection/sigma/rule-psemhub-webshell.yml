@@ -1,0 +1,21 @@
+title: Potential PSEMHUB Webshell Creation
+id: 5b4e743e-7975-430c-84a2-11c2e425946a
+status: experimental
+description: Detects the creation of .jsp files within the Oracle PeopleSoft PSEMHUB directory, indicative of CVE-2026-35273 exploitation.
+author: ThreatSignal
+date: 2026/06/16
+logsource:
+    product: windows
+    category: file_event
+detection:
+    selection:
+        TargetFilename|contains: '\PSEMHUB.war\'
+        TargetFilename|endswith: '.jsp'
+    condition: selection
+falsepositives:
+    - Legitimate Oracle updates (rare to see raw .jsp drops during normal operations)
+level: high
+tags:
+    - attack.persistence
+    - attack.t1505.003
+    - cve.2026.35273

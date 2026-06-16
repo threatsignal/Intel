@@ -11,6 +11,7 @@ Detailed technical writeups from our research: malware analysis, campaign breakd
 | Title | Category | Date |
 |-------|----------|------|
 | [Deep Dive: Exploitation of CVE-2026-50751 (Check Point VPN Auth Bypass)](2026-06-checkpoint-vpn-bypass/README.md) | Vulnerability Research | 2026-06-13 |
+| [Deep Dive: UNC6240 Exploitation of CVE-2026-35273 (Oracle PeopleSoft PSEMHUB RCE)](2026-06-peoplesoft-rce/README.md) | Vulnerability Research | 2026-06-16 |
 | *(More coming - follow [threatsignal.in](https://threatsignal.in) for new research)* | | |
 
 ---
