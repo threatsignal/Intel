@@ -30,7 +30,7 @@
 
 ## 1. Executive Summary
 
-Between May 27, 2026, and June 9, 2026, ThreatSignal analysts and partners identified active, zero-day exploitation of **CVE-2026-35273**, a critical remote code execution (RCE) vulnerability affecting Oracle PeopleSoft Enterprise PeopleTools. The vulnerability carries a CVSS score of 9.8 and allows unauthenticated attackers to execute arbitrary code on the affected server.
+Between May 27, 2026, and June 9, 2026, ThreatSignal identified active, zero-day exploitation of **CVE-2026-35273**, a critical remote code execution (RCE) vulnerability affecting Oracle PeopleSoft Enterprise PeopleTools. The vulnerability carries a CVSS score of 9.8 and allows unauthenticated attackers to execute arbitrary code on the affected server.
 
 The flaw originates from missing authentication controls (CWE-306) in the Environment Management Hub (PSEMHUB) component. By sending crafted `POST` requests to the `/PSEMHUB/hub/` endpoint and chaining requests to `/PSIGW/HttpListeningConnector`, an unauthenticated attacker can achieve Server-Side Request Forgery (SSRF) that escalates directly to RCE.
 
