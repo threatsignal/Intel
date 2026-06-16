@@ -1,11 +1,11 @@
 # CVE-2026-35273: Unauthenticated RCE in Oracle PeopleSoft PSEMHUB
 
-**Severity:** Critical (CVSS 9.8)
-**Affected Products:** Oracle PeopleSoft Enterprise PeopleTools (8.61, 8.62)
-**Protocol Surface:** HTTP/HTTPS (TCP 80/443)
-**First Observed Exploitation:** May 27, 2026 – June 9, 2026
-**Advisory:** [Oracle Security Alert - June 2026 (CPU187)](https://www.oracle.com/security-alerts/)
-**CWE:** CWE-306 (Missing Authentication for Critical Function)
+**Severity:** Critical (CVSS 9.8)  
+**Affected Products:** Oracle PeopleSoft Enterprise PeopleTools (8.61, 8.62)  
+**Protocol Surface:** HTTP/HTTPS (TCP 80/443)  
+**First Observed Exploitation:** May 27, 2026 – June 9, 2026  
+**Advisory:** [Oracle Security Alert - June 2026 (CPU187)](https://www.oracle.com/security-alerts/)  
+**CWE:** CWE-306 (Missing Authentication for Critical Function)  
 
 ---
 
